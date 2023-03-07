@@ -23,18 +23,19 @@ class Adapter(private var list: List<Model>, private var index:Int) :
         this.list = list
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when(index){
             1-> {
-                ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item, parent, false))
+                ViewHolder(LayoutInflater.from(parent.context)
+                    .inflate(R.layout.recycler_view_item, parent, false))
             }
             2-> {
-                ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item_list, parent, false))
+                ViewHolder(LayoutInflater.from(parent.context)
+                    .inflate(R.layout.recycler_view_item_list, parent, false))
             }
-            3-> {
-                ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item, parent, false))
-            }
-            else -> {ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item, parent, false))}
+            else -> {ViewHolder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.recycler_view_item, parent, false))}
         }
     }
 
@@ -46,6 +47,5 @@ class Adapter(private var list: List<Model>, private var index:Int) :
         holder.texView.text = list[position].name
         holder.imageView.setImageResource(list[position].image)
     }
-
 
 }

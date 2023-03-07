@@ -45,6 +45,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             binding.rview.adapter = adapter
         }
 
+
         binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -54,7 +55,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 filterList(newText)
                 return true
             }
-
         })
 
     }
