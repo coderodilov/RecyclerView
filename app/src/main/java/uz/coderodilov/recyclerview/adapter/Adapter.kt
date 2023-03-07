@@ -1,4 +1,5 @@
 package uz.coderodilov.recyclerview.adapter
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.coderodilov.recyclerview.model.Model
 import uz.coderodilov.recyclerview.R
 
-class Adapter(private val list: List<Model>, private var index:Int) :
+class Adapter(private var list: List<Model>, private var index:Int) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
 
 
@@ -17,6 +18,11 @@ class Adapter(private val list: List<Model>, private var index:Int) :
       val imageView: ImageView = view.findViewById(R.id.imageView)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilteredList(list: List<Model>){
+        this.list = list
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when(index){
             1-> {

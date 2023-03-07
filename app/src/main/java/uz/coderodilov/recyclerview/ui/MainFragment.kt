@@ -5,6 +5,8 @@ import android.os.Bundle
 
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
@@ -43,6 +45,39 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             binding.rview.adapter = adapter
         }
 
+        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+
+        })
+
+    }
+
+    private fun filterList(query: String?) {
+
+        if (query != null){
+            val filteredList = ArrayList<Model>()
+            for (model in list) {
+                if (model.name.lowercase().startsWith(query)){
+                    filteredList.add(model)
+                }
+            }
+
+            if (filteredList.isEmpty()){
+                Toast.makeText(requireContext(), "No data found", Toast.LENGTH_SHORT).show()
+            } else{
+                adapter.setFilteredList(filteredList)
+            }
+        }
+
+
+
     }
 
     private fun getAdapter(index: Int) {
@@ -77,5 +112,5 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onDestroyView()
         _binding = null
     }
-    
+
 }

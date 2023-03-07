@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#404040"
     tools:context=".ui.MainFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="#673AB7"
-        android:layout_height="60dp">
+        android:layout_height="60dp"
+        android:background="#4CAF50">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RecyclerView"
-            android:textSize="24sp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="24dp"
-            android:textColor="@color/white"/>
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp">
+
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/searchView"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="Search here..."/>
+
+        </androidx.cardview.widget.CardView>
+
 
         <ImageButton
             android:id="@+id/btnList"
@@ -38,10 +49,10 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/btnList"
             android:layout_marginEnd="8dp"
-            android:padding="5dp"
+            android:layout_toStartOf="@+id/btnList"
             android:background="@android:color/transparent"
+            android:padding="5dp"
             android:scaleType="centerCrop"
             android:src="@drawable/baseline_grid_view_24"
             tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -49,13 +60,13 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/rview"
         android:layout_gravity="center"
         android:layout_margin="12dp"
-        tools:listitem="@layout/recycler_view_item"
-        app:spanCount="2"/>
+        android:layout_weight="1"
+        app:spanCount="2"
+        tools:listitem="@layout/recycler_view_item" />
 
 </LinearLayout>
